@@ -127,9 +127,23 @@ class HBNBCommand(cmd.Cmd):
         for param in args_list[1:]:
             if '=' not in param:
                 continue
-            key, valau = param.split('=')
-            valau = valau.replace('_', ' ').replace('\\"', '"').replace('\\', '')
-            params[key] = valau
+            key_value = param.split('=')
+            if len(key_value) != 2:
+                continue;
+            key, value = key_value
+            if value.startswith('""') and value.endswith('""'):
+                value = value[1:-1].replace('_', ' ')
+            elif '.' in value:
+                try:
+                    value = float(value)
+                except ValueError:
+                    continue
+            else:
+                try:
+                    value = int(value)
+                except ValueError:
+                    continue
+            params[key] = value
         try:
             new_instance = HBNBCommand.classes[class_name](**params)
             storage.save()
