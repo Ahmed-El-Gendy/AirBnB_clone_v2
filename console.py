@@ -123,17 +123,19 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        par = {}
+        params = {}
         for param in args_list[1:]:
-            if '=' not in par:
-                continue;
-            key, val = param.split('=')
-            val = val.replace('_', ' ').replace('\\"', '"').replace('\\', '')
-            par[key] = val
-        new_instance = HBNBCommand.classes[class_name](**par)
-        storage.save()
-        print(new_instance.id)
-        storage.save()
+            if '=' not in param:
+                continue
+            key, valau = param.split('=')
+            valau = valau.replace('_', ' ').replace('\\"', '"').replace('\\', '')
+            params[key] = valau
+        try:
+            new_instance = HBNBCommand.classes[class_name](**params)
+            storage.save()
+            print(new_instance.id)
+        except Exception as e:
+            print(f"Error: {str(e)}")
 
     def help_create(self):
         """ Help information for the create method """
