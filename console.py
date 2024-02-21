@@ -123,8 +123,6 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        if args_list.length == 1:
-            return
         params = {}
         for param in args_list[1:]:
             if '=' not in param:
