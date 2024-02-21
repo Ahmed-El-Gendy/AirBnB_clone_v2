@@ -38,9 +38,9 @@ class DBStorage:
             dic = self.__session.query(State).all()
             dic.extend(self.__session.query(Amenity).all())
             dic.extend(self.__session.query(Review).all())
-            dic..extend(self.__session.query(Place).all())
-            dic..extend(self.__session.query(User).all())
-            dic..extend(self.__session.query(City).all())
+            dic.extend(self.__session.query(Place).all())
+            dic.extend(self.__session.query(User).all())
+            dic.extend(self.__session.query(City).all())
 
         return {"{}.{}".format(type(i).__name__, i.id): i for i in dic}
 
