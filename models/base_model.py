@@ -57,4 +57,5 @@ class BaseModel:
 
         def delete(self):
             """ new methid """
+            from models import storage
             storage.delete(self)

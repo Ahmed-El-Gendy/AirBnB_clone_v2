@@ -20,7 +20,7 @@ class State(BaseModel, Base):
         def cities(self):
             """ new method """
             cs = []
-            for tw in list(models.storage.all(tw).values()):
+            for tw in list(models.storage.all(City).values()):
                 if tw.state_id == self.id:
                     cs.append(tw)
             return cs

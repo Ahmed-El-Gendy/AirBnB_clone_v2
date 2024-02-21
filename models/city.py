@@ -13,3 +13,11 @@ class City(BaseModel, Base):
     __tablename__ = 'cities'
     state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
     name = Column(String(128), nullable=False)
+
+    def __init__(self, *args, **kwargs):
+        """Initializes a new City instance"""
+        super().__init__(*args, **kwargs)  # Call superclass constructor
+
+    def __str__(self):
+        """Returns a string representation of the City instance"""
+        return "[City] ({}) {}".format(self.id, self.name)
