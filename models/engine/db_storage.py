@@ -43,3 +43,23 @@ class DBStorage:
             dic..extend(self.__session.query(City).all())
 
         return {"{}.{}".format(type(i).__name__, i.id): i for i in dic}
+
+    def new(self, obj):
+        """ new method """
+        self.__session.add(obj)
+
+    def save(self):
+        """ new method """
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        """ new method """
+        if obj is not None:
+            self.__session.delete(obj)
+
+    def reload(self):
+        """ new method """
+        Base.metadata.create_all(self.__engine)
+        s = sessionmaker(bind=self.__engine,expire_on_commit=False)
+        a = scoped_session(s)
+        self.__session = a()
