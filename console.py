@@ -136,15 +136,10 @@ class HBNBCommand(cmd.Cmd):
             value = key_value[1]
             if value.startswith('"') and value.endswith('"'):
                 value = value[1:-1].replace('_', ' ').replace('"', '\"')
-            elif '.' in value:
-                try:
-                    value = float(value)
-                except ValueError:
-                    continue
             else:
                 try:
-                    value = int(value)
-                except ValueError:
+                    value = eval(value)
+                except (SyntaxError, NameError):
                     continue
             params[key] = value
         try:
