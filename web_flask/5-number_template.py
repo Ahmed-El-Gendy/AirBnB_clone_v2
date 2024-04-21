@@ -3,6 +3,7 @@
 Script that starts a Flask web application
 """
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -49,7 +50,8 @@ def number_route(n):
 @app.route('/number_template/<int:n>/', strict_slashes=False)
 def number_template(n):
     """Route number_template/<n>"""
-    return render_template("templates/5-number.html", n=n)
+    n = str(n)
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
