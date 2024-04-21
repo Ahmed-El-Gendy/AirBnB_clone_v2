@@ -43,13 +43,17 @@ def python_text(text='is cool'):
 
 @app.route('/number/<int:n>/', strict_slashes=False)
 def number_route(n):
-    """Route number/<n>"""
+    """
+    Route number/<n>
+    """
     return "{} is a number".format(n)
 
 
 @app.route('/number_template/<int:n>/', strict_slashes=False)
 def number_template(n):
-    """Route number_template/<n>"""
+    """
+    Route number_template/<n>
+    """
     n = str(n)
     return render_template('5-number.html', n=n)
 
